@@ -30,9 +30,27 @@ const validateCred = card => {
   let doubleDigits = 0;
   let sum = 0
   for (let i = card.length; i >= 0; i--) {
-    
+    doubleDigits ++;
+    let currentNum = card[i];
+    if (doubleDigits === 2) {
+      currentNum *= 2;
+      if (currentNum > 9) {
+        currentNum -= 9;
+      }
+      double = 0;
+    }
+    // console.log(card[i]);
+    sum += currentNum;
   }
+  if (sum % 10 === 0) {
+    return true;
+  }
+  return false;
 }
+validateCred(valid1);
+validateCred(invalid1);
+console.log(validateCred(valid1));
+console.log(validateCred(invalid1));
 
 
 
