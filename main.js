@@ -24,6 +24,9 @@ const mystery5 = [4, 9, 1, 3, 5, 4, 0, 4, 6, 3, 0, 7, 2, 5, 2, 3]
 // An array of all the arrays above
 const batch = [valid1, valid2, valid3, valid4, valid5, invalid1, invalid2, invalid3, invalid4, invalid5, mystery1, mystery2, mystery3, mystery4, mystery5]
 
+// An array of all the invalid credit card arrays above
+const invalidBatch = [invalid1, invalid2, invalid3, invalid4, invalid5]
+
 
 // Add your functions below:
 const validateCred = card => {
@@ -56,20 +59,56 @@ const findInvalidCards = cards => {
   // check through nested array for invalid credit card numbers
   // 1. loop through the array (don't need to create new loop - we will use the function from above)
   // 2. use the validateCred() function (from above ^^) to check if cards are invalid
-  // 3. create an empty array that stores the invalid credit cards
+  // 3. create an empty array that stores the invalid credit cards by iteration using filter
   const invalidCards = []
   const invalid = cards.filter(card => {
     if (!validateCred(card)) {
       invalidCards.push(card)
     }
   })
-  return invalidCards
+  return invalidCards;
 }
 findInvalidCards(batch)
 console.log(findInvalidCards(batch))
 
+const idInvalidCardCompanies = invalidCards => {
+  // 1. the function will take a nested array of invalid credit card numbers
+  // 2. we need to return an array of companies that sent out invalid cards
+  // 3. therefore an empty array will be required to store these
+  // 4. to find the companies names we will need to check the first digit of each invalid card i.e. 3 amex, 4 visa, 5 mastercard, and 6 discover
+  const invalidCompanies = [];
+  invalidCards.forEach(card => {
+    // switch statement for card at first index(i.e. 0) to check first digit
+    switch(card[0]) {
+      case 3:
+        if (invalidCompanies.findIndex(company => company === 'Amex (American Express)') === -1) {
+          invalidCompanies.push('Amex (American Express)')
+        }
+        break;
+      case 4:
+        if (invalidCompanies.findIndex(company => company === 'Visa') === -1) {
+          invalidCompanies.push('Visa')
+        }
+        break;
+      case 5:
+        if (invalidCompanies.findIndex(company => company === 'Mastercard') === -1) {
+          invalidCompanies.push('Mastercard')
+        }
+        break;
+      case 6:
+        if (invalidCompanies.findIndex(company => company === 'Discover') === -1) {
+          invalidCompanies.push('Discover')
+        }
+        break;
 
-
+      default:
+        console.log('Company not found')  
+    }
+  })
+  return invalidCompanies;
+}
+idInvalidCardCompanies(invalidBatch)
+console.log(idInvalidCardCompanies(invalidBatch))
 
 
 
