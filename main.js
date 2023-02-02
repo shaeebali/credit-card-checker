@@ -27,17 +27,17 @@ const batch = [valid1, valid2, valid3, valid4, valid5, invalid1, invalid2, inval
 
 // Add your functions below:
 const validateCred = card => {
-  let doubleDigits = 0;
+  let digits = 0;
   let sum = 0
-  for (let i = card.length; i >= 0; i--) {
-    doubleDigits ++;
+  for (let i = card.length - 1; i >= 0; i--) {
+    digits ++;
     let currentNum = card[i];
-    if (doubleDigits === 2) {
+    if (digits % 2 === 0) {
       currentNum *= 2;
       if (currentNum > 9) {
         currentNum -= 9;
       }
-      double = 0;
+      // digits = 0;
     }
     // console.log(card[i]);
     sum += currentNum;
@@ -51,6 +51,10 @@ validateCred(valid1);
 validateCred(invalid1);
 console.log(validateCred(valid1));
 console.log(validateCred(invalid1));
+
+const findInvalidCards = cards => {
+  
+}
 
 
 
