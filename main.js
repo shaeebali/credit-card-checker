@@ -40,9 +40,7 @@ const validateCred = card => {
       if (currentNum > 9) {
         currentNum -= 9;
       }
-      // digits = 0;
     }
-    // console.log(card[i]);
     sum += currentNum;
   }
   if (sum % 10 === 0) {
@@ -57,10 +55,10 @@ console.log(validateCred(invalid1));
 
 const findInvalidCards = cards => {
   // check through nested array for invalid credit card numbers
-  // 1. loop through the array (don't need to create new loop - we will use the function from above)
+  // 1. loop through the array (don't need to create new loop - we will use the function from above and the filter method)
   // 2. use the validateCred() function (from above ^^) to check if cards are invalid
   // 3. create an empty array that stores the invalid credit cards by iteration using filter
-  const invalidCards = []
+  const invalidCards = [];
   const invalid = cards.filter(card => {
     if (!validateCred(card)) {
       invalidCards.push(card)
@@ -78,7 +76,7 @@ const idInvalidCardCompanies = invalidCards => {
   // 4. to find the companies names we will need to check the first digit of each invalid card i.e. 3 amex, 4 visa, 5 mastercard, and 6 discover
   const invalidCompanies = [];
   invalidCards.forEach(card => {
-    // switch statement for card at first index(i.e. 0) to check first digit
+    // switch statement for card at first index(i.e. 0) to check first digit in the array
     switch(card[0]) {
       case 3:
         if (invalidCompanies.findIndex(company => company === 'Amex (American Express)') === -1) {
@@ -109,7 +107,3 @@ const idInvalidCardCompanies = invalidCards => {
 }
 idInvalidCardCompanies(invalidBatch)
 console.log(idInvalidCardCompanies(invalidBatch))
-
-
-
-
