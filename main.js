@@ -53,8 +53,20 @@ console.log(validateCred(valid1));
 console.log(validateCred(invalid1));
 
 const findInvalidCards = cards => {
-  
+  // check through nested array for invalid credit card numbers
+  // 1. loop through the array (don't need to create new loop - we will use the function from above)
+  // 2. use the validateCred() function (from above ^^) to check if cards are invalid
+  // 3. create an empty array that stores the invalid credit cards
+  const invalidCards = []
+  const invalid = cards.filter(card => {
+    if (!validateCred(card)) {
+      invalidCards.push(card)
+    }
+  })
+  return invalidCards
 }
+findInvalidCards(batch)
+console.log(findInvalidCards(batch))
 
 
 
